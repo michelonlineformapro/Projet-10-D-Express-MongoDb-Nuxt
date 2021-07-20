@@ -1,28 +1,60 @@
 <template>
-  <div class="container">
-    <ul class="list-group" v-if="articles.length">
-      <li
-        class="list-group-item"
-        v-for="article in articles"
-        :key="article.id"
-      >
-        {{article.title}}
+  <div>
+    <div class="container-fluid text-center">
+      <img src="~/assets/img/banner.png" alt="Nuxt Logo" title="Nuxt Logo">
+    </div>
 
-      </li>
-    </ul>
+    <div class="container mt-2">
 
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="text-info">Articles</h1>
+        <nuxt-link to="/articles/ajouter" class="btn btn-success">Ajouter un articles</nuxt-link>
+      </div>
+
+
+      <div class="list-group" v-if="articles.length">
+        <!--Au clic sur l'article on appel la page de détails grace a nuxt link-->
+        <!--Url = localhost:3000/objetcID ex: 60f3ea30dbfa5c1920a1b815-->
+        <!--pages/_id/index.vue-->
+        <nuxt-link
+          class="list-group-item list-group-item-action mt-2"
+          :to="'/' + article._id"
+          v-for="article in articles"
+          :key="article.id">
+          <h6 class="text-white bg-danger p-3 mt-2">{{ article.title }}</h6>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-12 animate__animated animate__slideInLeft">
+              <img class="img-fluid mt-2" :src="article.image" :alt="article.title" :title="article.title" width="50%">
+            </div>
+
+            <div class="col-md-6 col-sm-12 animate__animated animate__slideInRight">
+              <p class="mt-4">Ecrit par : <em class="text-info">{{ article.auteur }}</em></p>
+              <p class="articles">{{article.contenus}}</p>
+            </div>
+          </div>
+          <br />
+        </nuxt-link>
+      </div>
 
     <div v-else>
       <div class="alert alert-danger">PAS DE RESULTAT</div>
     </div>
+  </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "index",
+  //SEO meta
+  head: {
+    title: "ACCUEIL - Articles -"
+  },
+  //Data-binding = getter et setter
   data(){
     return{
+      //Tableau des articles
       articles: []
     }
   },
@@ -46,7 +78,7 @@ export default {
   },
   //Cycle de vie Vuejs (instance + beforeCreated + created + beforeMounted + mounted)
   mounted() {
-    //A l'aafichage de la page on appel la fonction
+    //A l'affichage de la page on appel la fonction
     this.afficherTousLesArticles(this)
   }
 

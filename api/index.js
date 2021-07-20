@@ -4,6 +4,7 @@ const express = require('express');
 //Appel du fichier de connexion a mongodb
 const db = require('./db');
 
+
 //Instance du framework express
 const app = express();
 
