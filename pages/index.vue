@@ -18,7 +18,7 @@
         <!--pages/_id/index.vue-->
         <nuxt-link
           class="list-group-item list-group-item-action mt-2"
-          :to="'/' + article._id"
+          :to="'/articles/' + article._id"
           v-for="article in articles"
           :key="article.id">
           <h6 class="text-white bg-danger p-3 mt-2">{{ article.title }}</h6>
@@ -45,21 +45,29 @@
 </template>
 
 <script>
+import Ajouter from "@/pages/articles/ajouter";
 export default {
   name: "index",
-  //SEO meta
-  head: {
-    title: "ACCUEIL - Articles -"
+  components: {Ajouter},
+  head:{
+    title: 'ACCUEIL ARTICLEs',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: "Description de la page d'accueil qui contient des articles"
+      }
+    ],
   },
   //Data-binding = getter et setter
   data(){
     return{
-      //Tableau des articles
+      //Tableau des _id
       articles: []
     }
   },
   methods:{
-    //Creation d'une fonction pour afficher les articles
+    //Creation d'une fonction pour afficher les _id
     //n passe un element en paramètre
     afficherTousLesArticles(context){
       //le paramètre (contexte = this) appel axios et la methode get http

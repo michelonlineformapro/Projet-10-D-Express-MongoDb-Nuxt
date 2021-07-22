@@ -14,7 +14,7 @@ app.use(express.urlencoded({
   extended: true
 }))
 
-//Import des routes articles
+//Import des routes _id
 const articlesRoutes = require('./routes/articles.routes');
 
 //Utilisé les route avec le framework express
