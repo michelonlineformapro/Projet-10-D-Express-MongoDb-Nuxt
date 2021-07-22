@@ -43,7 +43,6 @@ export default {
     // https://go.nuxtjs.dev/bootstrap + axios npm install @nuxtjs/axios
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/vercel-builder',
   ],
 
   //Ici nuxt tourne sur le port 3000 ainsi que expressJS (on appel le fichier index.js du backend /api/index.js)
